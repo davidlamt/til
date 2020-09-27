@@ -7,6 +7,7 @@ module.exports = {
     'eslint:recommended', // Use the recommened rules from eslint
     'plugin:@typescript-eslint/recommended', // Use the recommended rules from @typescript-eslint/eslint-plugin
     'plugin:react/recommended', // Use the recommended rules from eslint-plugin-react
+    'plugin:react-hooks/recommended', // Use the recommended rules from eslint-plugin-react-hooks
     'prettier/@typescript-eslint', // Use eslint-config-prettier to disable ESLint formatting rules from @typescript-eslint/eslint-plugin that would conflict with Prettier
     'prettier/react', // Use eslint-config-prettier to disable ESLint formatting rules from eslint-plugin-react that would conflict with with Prettier
     'plugin:prettier/recommended', // Enables eslint-plugin-prettier to display Prettier errors as ESLint errors
@@ -22,6 +23,7 @@ module.exports = {
   plugins: [
     '@typescript-eslint', // Allows for manually setting @typescript-eslint/* rules
     'react', // Allows for manually setting react/* rules
+    'react-hooks', // Allows for manually setting react-hooks/* rules
     'prettier', // Allows for manually setting prettier/* rules
   ],
 };
