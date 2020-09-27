@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     browser: true, // Allows for the use of predefined global variables for browsers (document, window, etc.)
+    node: true, // Allows for the use of predefined global variables for Node.js (module, process, etc.)
   },
   extends: [
     'eslint:recommended', // Use the recommened rules from eslint
