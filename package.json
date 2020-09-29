@@ -32,6 +32,7 @@
     "typeface-montserrat": "0.0.75"
   },
   "devDependencies": {
+    "@types/react-helmet": "^6.1.0",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "eslint": "^7.10.0",
@@ -39,6 +40,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.2",
     "eslint-plugin-react-hooks": "^4.1.2",
+    "npm": "^6.14.8",
     "prettier": "2.1.1",
     "typescript": "^4.0.3"
   },
@@ -54,12 +56,13 @@
   },
   "scripts": {
     "build": "gatsby build",
+    "clean": "gatsby clean",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
+    "start": "npm run develop",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
+    "type-check": "tsc --noEmit"
   }
 }

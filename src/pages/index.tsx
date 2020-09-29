@@ -1,11 +1,57 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { Link, PageProps, graphql, useStaticQuery } from 'gatsby';
 
-import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-const BlogIndex = ({ data, location }) => {
+type NodeData = {
+  excerpt: string;
+  fields: {
+    slug: string;
+  };
+  frontmatter: {
+    date: string;
+    title: string;
+    description: string;
+  };
+};
+
+type QueryData = {
+  site: {
+    siteMetadata: {
+      title: string;
+    };
+  };
+  allMarkdownRemark: {
+    nodes: NodeData[];
+  };
+};
+
+const BlogIndex: React.FC<PageProps> = ({ location }) => {
+  const data: QueryData = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+        allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+          nodes {
+            excerpt
+            fields {
+              slug
+            }
+            frontmatter {
+              date(formatString: "MMMM DD, YYYY")
+              title
+              description
+            }
+          }
+        }
+      }
+    `
+  );
   const siteTitle = data.site.siteMetadata?.title || `Title`;
   const posts = data.allMarkdownRemark.nodes;
 
@@ -13,11 +59,10 @@ const BlogIndex = ({ data, location }) => {
     return (
       <Layout location={location} title={siteTitle}>
         <SEO title="All posts" />
-        <Bio />
         <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
+          No blog posts found. Add markdown posts to &quot;content/blog&quot;
+          (or the directory you specified for the
+          &quot;gatsby-source-filesystem&quot; plugin in gatsby-config.js).
         </p>
       </Layout>
     );
@@ -26,7 +71,6 @@ const BlogIndex = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="All posts" />
-      <Bio />
       {posts.map((post) => {
         const title = post.frontmatter.title || post.fields.slug;
         return (
@@ -60,26 +104,3 @@ const BlogIndex = ({ data, location }) => {
 };
 
 export default BlogIndex;
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      nodes {
-        excerpt
-        fields {
-          slug
-        }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
-          title
-          description
-        }
-      }
-    }
-  }
-`;

@@ -1,10 +1,29 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { PageProps, graphql, useStaticQuery } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-const NotFoundPage = ({ data, location }) => {
+type QueryData = {
+  site: {
+    siteMetadata: {
+      title: string;
+    };
+  };
+};
+
+const NotFoundPage: React.FC<PageProps> = ({ location }) => {
+  const data: QueryData = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `
+  );
   const siteTitle = data.site.siteMetadata.title;
 
   return (
@@ -17,13 +36,3 @@ const NotFoundPage = ({ data, location }) => {
 };
 
 export default NotFoundPage;
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;

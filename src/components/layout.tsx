@@ -1,7 +1,13 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, PageProps } from 'gatsby';
 
-const Layout = ({ location, title, children }) => {
+type LayoutProps = {
+  location: PageProps['location'];
+  children: React.ReactNode;
+  title: string;
+};
+
+const Layout: React.FC<LayoutProps> = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`;
   const isRootPath = location.pathname === rootPath;
   let header;

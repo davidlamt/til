@@ -1,11 +1,51 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql, Link, PageProps } from 'gatsby';
 
-import Bio from '../components/bio';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
-const BlogPostTemplate = ({ data, pageContext, location }) => {
+type QueryData = {
+  site: {
+    siteMetadata: {
+      title: string;
+    };
+  };
+  markdownRemark: {
+    id: string;
+    excerpt: string;
+    html: string;
+    frontmatter: {
+      date: string;
+      title: string;
+      description: string;
+    };
+  };
+};
+
+type PageContextProps = {
+  next: {
+    fields: {
+      slug: string;
+    };
+    frontmatter: {
+      title: string;
+    };
+  };
+  previous: {
+    fields: {
+      slug: string;
+    };
+    frontmatter: {
+      title: string;
+    };
+  };
+};
+
+const BlogPostTemplate: React.FC<PageProps<QueryData, PageContextProps>> = ({
+  data,
+  location,
+  pageContext,
+}) => {
   const post = data.markdownRemark;
   const siteTitle = data.site.siteMetadata?.title || `Title`;
   const { previous, next } = pageContext;
@@ -30,9 +70,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
           itemProp="articleBody"
         />
         <hr />
-        <footer>
-          <Bio />
-        </footer>
+        <footer></footer>
       </article>
       <nav className="blog-post-nav">
         <ul
@@ -66,7 +104,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
 export default BlogPostTemplate;
 
-export const pageQuery = graphql`
+export const query = graphql`
   query BlogPostBySlug($slug: String!) {
     site {
       siteMetadata {

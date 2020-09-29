@@ -17,6 +17,10 @@ module.exports = {
         'plugin:@typescript-eslint/recommended', // Use the recommended rules from @typescript-eslint/eslint-plugin
         'prettier/@typescript-eslint', // Use eslint-config-prettier to disable ESLint formatting rules from @typescript-eslint/eslint-plugin that would conflict with Prettier
       ],
+      rules: {
+        '@typescript-eslint/no-explicit-any': 2,
+        'react/prop-types': 0,
+      },
     },
   ],
   parser: '@typescript-eslint/parser', // Specifies the ESLint parser
@@ -33,4 +37,9 @@ module.exports = {
     'react-hooks', // Allows for manually setting react-hooks/* rules
     'prettier', // Allows for manually setting prettier/* rules
   ],
+  settings: {
+    react: {
+      version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
+    },
+  },
 };
