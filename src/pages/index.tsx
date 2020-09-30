@@ -22,7 +22,7 @@ type QueryData = {
       title: string;
     };
   };
-  allMarkdownRemark: {
+  allMdx: {
     nodes: NodeData[];
   };
 };
@@ -36,7 +36,7 @@ const BlogIndex: React.FC<PageProps> = ({ location }) => {
             title
           }
         }
-        allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+        allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
           nodes {
             excerpt
             fields {
@@ -53,7 +53,7 @@ const BlogIndex: React.FC<PageProps> = ({ location }) => {
     `
   );
   const siteTitle = data.site.siteMetadata?.title || `Title`;
-  const posts = data.allMarkdownRemark.nodes;
+  const posts = data.allMdx.nodes;
 
   if (posts.length === 0) {
     return (

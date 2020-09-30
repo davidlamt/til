@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, Link, PageProps } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -10,10 +11,10 @@ type QueryData = {
       title: string;
     };
   };
-  markdownRemark: {
+  mdx: {
     id: string;
     excerpt: string;
-    html: string;
+    body: string;
     frontmatter: {
       date: string;
       title: string;
@@ -46,7 +47,7 @@ const BlogPostTemplate: React.FC<PageProps<QueryData, PageContextProps>> = ({
   location,
   pageContext,
 }) => {
-  const post = data.markdownRemark;
+  const post = data.mdx;
   const siteTitle = data.site.siteMetadata?.title || `Title`;
   const { previous, next } = pageContext;
 
@@ -65,10 +66,7 @@ const BlogPostTemplate: React.FC<PageProps<QueryData, PageContextProps>> = ({
           <h1 itemProp="headline">{post.frontmatter.title}</h1>
           <p>{post.frontmatter.date}</p>
         </header>
-        <section
-          dangerouslySetInnerHTML={{ __html: post.html }}
-          itemProp="articleBody"
-        />
+        <MDXRenderer>{post.body}</MDXRenderer>
         <hr />
         <footer></footer>
       </article>
@@ -111,10 +109,10 @@ export const query = graphql`
         title
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
-      html
+      body
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
