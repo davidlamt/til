@@ -42,14 +42,24 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.2",
     "eslint-plugin-react-hooks": "^4.1.2",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
     "prettier": "2.1.1",
     "typescript": "^4.0.3"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "keywords": [
     "gatsby"
   ],
   "license": "0BSD",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
+  },
   "main": "n/a",
   "repository": {
     "type": "git",
