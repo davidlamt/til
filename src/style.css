@@ -11,7 +11,7 @@
   --maxWidth-3xl: 48rem;
   --maxWidth-4xl: 56rem;
   --maxWidth-full: "100%";
-  --maxWidth-wrapper: var(--maxWidth-2xl);
+  --maxWidth-wrapper: var(--maxWidth-3xl);
   --spacing-px: "1px";
   --spacing-0: 0;
   --spacing-1: 0.25rem;
@@ -81,6 +81,10 @@ body {
   font-family: var(--font-body);
   font-size: var(--fontSize-1);
   color: var(--color-text);
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.05)) repeat-y, linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.05)) repeat-y, linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.05)) repeat-y, linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.05)) repeat-y, linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.05)) repeat-y, linear-gradient(135deg, #CCDDE0 0%, #D1F0E1 100%) no-repeat;
+  background-position: 10%, 30%, 50%, 70%, 90%, 0;
+  background-size: 2px auto, 2px auto, 2px auto, 2px auto, 2px auto, 100% auto;
+  background-attachment: fixed;
 }
 
 footer {
@@ -239,12 +243,6 @@ a:focus {
 }
 
 /* Custom classes */
-
-.global-wrapper {
-  margin: var(--spacing-0) auto;
-  max-width: var(--maxWidth-wrapper);
-  padding: var(--spacing-10) var(--spacing-5);
-}
 
 .post-list-item {
   margin-bottom: var(--spacing-8);

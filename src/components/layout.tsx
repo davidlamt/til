@@ -1,7 +1,18 @@
 import React from 'react';
 import { PageProps } from 'gatsby';
+import styled from '@emotion/styled';
 
 import { Header } from './';
+
+const ContentWrapper = styled.div`
+  background-color: hsla(0, 0%, 100%, 0.9);
+  box-shadow: 0 30px 50px 0 rgba(1, 1, 1, 0.15);
+  margin: 15vw auto var(--spacing-0) auto;
+  max-width: var(--maxWidth-wrapper);
+  padding: var(--spacing-16) var(--spacing-20);
+  position: relative;
+  width: 90%;
+`;
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -14,9 +25,9 @@ const Layout: React.FC<LayoutProps> = ({ children, location, title }) => {
   const isRootPath = location.pathname === rootPath;
 
   return (
-    <div className="global-wrapper" data-is-root-path={isRootPath}>
+    <div data-is-root-path={isRootPath}>
       <Header title={title} />
-      <main>{children}</main>
+      <ContentWrapper>{children}</ContentWrapper>
       <footer>
         © {new Date().getFullYear()}, Built with
         {` `}
