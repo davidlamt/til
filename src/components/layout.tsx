@@ -2,7 +2,7 @@ import React from 'react';
 import { PageProps } from 'gatsby';
 import styled from '@emotion/styled';
 
-import { Header } from './';
+import { Footer, Header } from './';
 
 const ContentWrapper = styled.div`
   background-color: hsla(0, 0%, 100%, 0.9);
@@ -28,11 +28,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location, title }) => {
     <div data-is-root-path={isRootPath}>
       <Header title={title} />
       <ContentWrapper>{children}</ContentWrapper>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
-      </footer>
+      <Footer />
     </div>
   );
 };
