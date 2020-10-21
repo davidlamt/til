@@ -2,7 +2,10 @@ import React from 'react';
 import { graphql, PageProps } from 'gatsby';
 
 import Layout from '../components/layout';
+import SEO from '../components/seo';
 import { Post } from '../components';
+
+import { PostData } from '../types';
 
 type QueryData = {
   site: {
@@ -10,16 +13,7 @@ type QueryData = {
       title: string;
     };
   };
-  mdx: {
-    id: string;
-    excerpt: string;
-    body: string;
-    frontmatter: {
-      date: string;
-      title: string;
-      description: string;
-    };
-  };
+  mdx: PostData;
 };
 
 type PageContextProps = {
@@ -52,6 +46,10 @@ const BlogPostTemplate: React.FC<PageProps<QueryData, PageContextProps>> = ({
 
   return (
     <Layout location={location} title={siteTitle}>
+      <SEO
+        title={post.frontmatter.title}
+        description={post.frontmatter.description || post.excerpt}
+      />
       <Post next={next} post={post} previous={previous} />
     </Layout>
   );
@@ -67,14 +65,17 @@ export const query = graphql`
       }
     }
     mdx(fields: { slug: { eq: $slug } }) {
-      id
-      excerpt(pruneLength: 160)
       body
+      excerpt(pruneLength: 160)
+      fields {
+        slug
+      }
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
         description
       }
+      id
     }
   }
 `;
