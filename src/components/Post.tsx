@@ -5,6 +5,16 @@ import styled from '@emotion/styled';
 
 import { PostData } from '../types';
 
+const PostContainer = styled.div`
+  background-color: hsla(0, 0%, 100%, 0.9);
+  box-shadow: 0 30px 50px 0 rgba(1, 1, 1, 0.15);
+  padding: var(--spacing-16) var(--spacing-20);
+
+  &:not(:last-child) {
+    margin-bottom: var(--spacing-16);
+  }
+`;
+
 const Title = styled.h1`
   margin: var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0);
 `;
@@ -65,7 +75,7 @@ const Post: React.FC<PostProps> = ({
   }
 
   return (
-    <>
+    <PostContainer>
       <article itemScope itemType="http://schema.org/Article">
         <div>
           {titleFragment}
@@ -101,7 +111,7 @@ const Post: React.FC<PostProps> = ({
           </li>
         </OtherPostsList>
       </nav>
-    </>
+    </PostContainer>
   );
 };
 

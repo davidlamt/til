@@ -9,11 +9,8 @@ const MainWrapper = styled.main`
 `;
 
 const ContentWrapper = styled.div`
-  background-color: hsla(0, 0%, 100%, 0.9);
-  box-shadow: 0 30px 50px 0 rgba(1, 1, 1, 0.15);
   margin: 15vw auto var(--spacing-0) auto;
   max-width: var(--maxWidth-wrapper);
-  padding: var(--spacing-16) var(--spacing-20);
   width: 90%;
 `;
 
