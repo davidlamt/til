@@ -29,6 +29,7 @@ const BlogIndex: React.FC<PageProps> = ({ location }) => {
               slug
             }
             frontmatter {
+              categories
               date(formatString: "MMMM DD, YYYY")
               title
             }

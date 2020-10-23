@@ -5,9 +5,10 @@ export type PostData = {
     slug: string;
   };
   frontmatter: {
+    categories: string[];
     date: string;
-    title: string;
     description?: string;
+    title: string;
   };
   id?: string;
 };

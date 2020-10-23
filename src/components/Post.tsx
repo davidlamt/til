@@ -27,7 +27,7 @@ const TitleLink = styled(Link)`
   }
 `;
 
-const Date = styled.p`
+const Metadata = styled.p`
   font-size: var(--fontSize-2);
   font-family: var(--font-heading);
 `;
@@ -79,7 +79,9 @@ const Post: React.FC<PostProps> = ({
       <article itemScope itemType="http://schema.org/Article">
         <div>
           {titleFragment}
-          <Date>{post.frontmatter.date}</Date>
+          <Metadata>
+            {post.frontmatter.date} - {post.frontmatter.categories[0]}
+          </Metadata>
         </div>
         <MDXRenderer>{post.body}</MDXRenderer>
         <hr />
