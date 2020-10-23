@@ -64,12 +64,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode });
+    const slug = createFilePath({ node, getNode });
 
     createNodeField({
-      name: `slug`,
+      name: 'slug',
       node,
-      value,
+      value: `/posts${slug}`,
     });
   }
 };
