@@ -13,6 +13,10 @@ const PostContainer = styled.div`
   &:not(:last-child) {
     margin-bottom: var(--spacing-16);
   }
+
+  @media (max-width: 600px) {
+    padding: var(--spacing-8);
+  }
 `;
 
 const Title = styled.h1`
