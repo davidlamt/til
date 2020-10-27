@@ -5,6 +5,14 @@ import styled from '@emotion/styled';
 
 import { PostData } from '../types';
 
+export enum PostContext {
+  AllPosts,
+  SinglePost,
+}
+
+const BASE_REPO_URL =
+  'https://github.com/davidlamt/til/edit/master/content/tils';
+
 const PostContainer = styled.div`
   background-color: hsla(0, 0%, 100%, 0.9);
   box-shadow: 0 30px 50px 0 rgba(1, 1, 1, 0.15);
@@ -41,6 +49,7 @@ const OtherPostsList = styled.ul`
 `;
 
 type PostProps = {
+  context?: PostContext;
   next?: {
     fields: {
       slug: string;
@@ -58,19 +67,21 @@ type PostProps = {
       title: string;
     };
   };
-  shouldLinkifyTitle?: boolean;
 };
 
 const Post: React.FC<PostProps> = ({
+  context = PostContext.SinglePost,
   next,
   post,
   previous,
-  shouldLinkifyTitle = false,
 }) => {
+  const slug = post.fields.slug;
+  const editUrl = `${BASE_REPO_URL}${slug}index.mdx`;
+
   let titleFragment;
-  if (shouldLinkifyTitle) {
+  if (context === PostContext.AllPosts) {
     titleFragment = (
-      <TitleLink to={post.fields.slug} itemProp="url">
+      <TitleLink to={slug} itemProp="url">
         <Title itemProp="headline">{post.frontmatter.title}</Title>
       </TitleLink>
     );
@@ -88,34 +99,46 @@ const Post: React.FC<PostProps> = ({
           </Metadata>
         </div>
         <MDXRenderer>{post.body}</MDXRenderer>
+        {context === PostContext.SinglePost && (
+          <em>
+            Want to improve this post? Feel free to{' '}
+            <a href={editUrl} rel="noopener noreferrer">
+              submit a pull request
+            </a>
+            !
+          </em>
+        )}
       </article>
       {(previous || next) && (
-        <nav>
-          <OtherPostsList
-            style={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              justifyContent: `space-between`,
-              listStyle: `none`,
-              padding: 0,
-            }}
-          >
-            <li>
-              {previous && (
-                <Link to={previous.fields.slug} rel="prev">
-                  ← {previous.frontmatter.title}
-                </Link>
-              )}
-            </li>
-            <li>
-              {next && (
-                <Link to={next.fields.slug} rel="next">
-                  {next.frontmatter.title} →
-                </Link>
-              )}
-            </li>
-          </OtherPostsList>
-        </nav>
+        <>
+          <br />
+          <nav>
+            <OtherPostsList
+              style={{
+                display: `flex`,
+                flexWrap: `wrap`,
+                justifyContent: `space-between`,
+                listStyle: `none`,
+                padding: 0,
+              }}
+            >
+              <li>
+                {previous && (
+                  <Link to={previous.fields.slug} rel="prev">
+                    ← {previous.frontmatter.title}
+                  </Link>
+                )}
+              </li>
+              <li>
+                {next && (
+                  <Link to={next.fields.slug} rel="next">
+                    {next.frontmatter.title} →
+                  </Link>
+                )}
+              </li>
+            </OtherPostsList>
+          </nav>
+        </>
       )}
     </PostContainer>
   );

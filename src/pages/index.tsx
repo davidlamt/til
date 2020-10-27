@@ -5,6 +5,7 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { Post } from '../components';
 
+import { PostContext } from '../components/Post';
 import { PostData } from '../types';
 
 type QueryData = {
@@ -51,7 +52,7 @@ const BlogIndex: React.FC<PageProps> = ({ location }) => {
     <Layout location={location} title={siteTitle}>
       <SEO title="All posts" />
       {posts.map((post) => (
-        <Post key={post.id} post={post} shouldLinkifyTitle />
+        <Post key={post.id} post={post} context={PostContext.AllPosts} />
       ))}
     </Layout>
   );
