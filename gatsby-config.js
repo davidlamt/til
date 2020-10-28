@@ -52,7 +52,59 @@ module.exports = {
         trackingId: `G-P4LP6SGEEV`,
       },
     },
-    `gatsby-plugin-feed`,
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.nodes.map((post) => {
+                return Object.assign({}, post.frontmatter, {
+                  description: post.excerpt,
+                  date: post.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + post.fields.slug,
+                  guid: site.siteMetadata.siteUrl + post.fields.slug,
+                  custom_elements: [{ 'content:encoded': post.body }],
+                });
+              });
+            },
+            query: `
+              {
+                allMdx(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  nodes {
+                    body
+                    excerpt
+                    fields {
+                      slug
+                    }
+                    frontmatter {
+                      title
+                      date
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/rss.xml',
+            title: "David's TIL RSS Feed",
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
