@@ -242,6 +242,12 @@ a:focus {
   text-decoration: none;
 }
 
+/* Image */
+
+img {
+  max-width: 100%;
+}
+
 /* Custom classes */
 
 .gatsby-highlight {
