@@ -4,6 +4,8 @@
 
 Tidbits of (hopefully) useful information on technologies and tools related to software development.
 
+https://til.davidltran.com/
+
 ## Inspiration (thanks!)
 
 - https://til.hashrocket.com/
