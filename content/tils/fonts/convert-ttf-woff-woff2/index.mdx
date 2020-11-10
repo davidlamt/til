@@ -1,0 +1,21 @@
+---
+title: "Convert TTF Font Into WOFF and WOFF2"
+date: "2020-11-09"
+categories: ["Fonts"]
+---
+
+Got a system font you want to convert into a web font?
+
+```sh
+cat font.ttf | npx ttf2woff2 >> font.woff2
+```
+
+Need to support older browsers?
+
+```sh
+npx ttf2woff font.ttf font.woff
+```
+
+Seeing `command not found: npx`?
+
+You probably need to install [Node.js](https://nodejs.org/en/).
