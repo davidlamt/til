@@ -1,0 +1,45 @@
+---
+title: "Access-Control-Allow-Headers vs. Access-Control-Expose-Headers"
+date: "2020-11-16"
+categories: ["HTTP"]
+---
+
+## Access-Control-Allow-Headers
+
+Response header to a preflight request (OPTIONS) that indicates which headers can be used when making the actual request.
+
+```sh
+# Example request
+curl -vX OPTIONS \
+  -H "Origin: https://yourdomain.com" \
+  -H "Access-Control-Request-Method: POST" \
+  -H "Access-Control-Request-Headers: X-Some-Header" \
+  https://www.someapi.com/
+
+# Example response
+# ...
+< access-control-allow-origin: https://yourdomain.com
+< access-control-allow-methods: OPTIONS,POST
+< access-control-allow-headers: X-Some-Header
+# ...
+```
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers
+
+## Access-Control-Expose-Headers
+
+Response header to an actual request that indicates which other response headers the client (ex: a browser) is allowed to access.
+
+```sh
+# Example request
+curl -v -H "Origin: https://yourdomain.com" \
+  https://www.someapi.com/
+
+# Example response
+# ...
+< access-control-allow-origin: https://yourdomain.com
+< access-control-expose-headers: X-Some-Header
+# ...
+```
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers
