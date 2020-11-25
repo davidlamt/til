@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, withPrefix } from 'gatsby';
 
 type Meta =
   | {
@@ -94,7 +94,14 @@ const SEO: React.FC<SEOProps> = ({
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <link
+        rel="stylesheet"
+        type="text/css"
+        href={withPrefix('asciinema-player.css')}
+      />
+      <script src={withPrefix('asciinema-player.js')}></script>
+    </Helmet>
   );
 };
 
