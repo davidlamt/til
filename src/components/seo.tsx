@@ -94,14 +94,7 @@ const SEO: React.FC<SEOProps> = ({
           content: metaDescription,
         },
       ].concat(meta)}
-    >
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href={withPrefix('asciinema-player.css')}
-      />
-      <script src={withPrefix('asciinema-player.js')}></script>
-    </Helmet>
+    />
   );
 };
 
