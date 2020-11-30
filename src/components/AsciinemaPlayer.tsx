@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 const asciinemaOptions = {
   idleTimeLimit: 2,
-  poster: 'npt:0:1',
+  poster: 'npt:0:2',
 };
 
 type AsciinemaPlayerProps = {
