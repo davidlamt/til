@@ -1,0 +1,19 @@
+---
+title: "How to Sort Lines in Vim"
+date: "2020-11-29"
+categories: ["Vim"]
+---
+
+You can use the built-in [sort utility](https://vim.fandom.com/wiki/Sort_lines)!
+
+To perform a sort, first select the lines you want to sort using visual mode. Afterwards, press `:`, type `sort`, and then press `enter`.
+
+Note that the default sort is based on unicode characters so the results may be unexpected (it accepts an optional regex argument to help with that!)
+
+There are some neat options like `u` for removing duplicate lines, `n` for numeric sort, and `sort!` for sorting in reverse.
+
+import { AsciinemaPlayer } from '~components';
+
+<AsciinemaPlayer src='/casts/sort-lines-vim.cast' />
+
+<br />

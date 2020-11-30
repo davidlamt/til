@@ -1,5 +1,6 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const CopyPlugin = require('copy-webpack-plugin');
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
@@ -114,4 +115,19 @@ exports.createSchemaCustomization = ({ actions }) => {
       slug: String
     }
   `);
+};
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    plugins: [
+      new CopyPlugin({
+        patterns: [{ from: 'content/**/*.cast', to: './casts/[name].cast' }],
+      }),
+    ],
+    resolve: {
+      alias: {
+        '~components': path.resolve(__dirname, 'src/components'),
+      },
+    },
+  });
 };
