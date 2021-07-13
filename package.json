@@ -46,12 +46,14 @@
     "eslint-plugin-react-hooks": "^4.1.2",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "2.1.1",
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.3",
+    "wait-on": "^6.0.0"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run preload && lint-staged"
     }
   },
   "keywords": [
@@ -68,7 +70,8 @@
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "preload-fonts": "gatsby-preload-fonts",
+    "preload": "run-p -r develop preload-fonts",
+    "preload-fonts": "wait-on http://localhost:8000 && gatsby-preload-fonts",
     "serve": "gatsby serve",
     "start": "npm run develop",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
