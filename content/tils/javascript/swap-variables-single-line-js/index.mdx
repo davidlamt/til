@@ -1,0 +1,17 @@
+---
+title: "Swap JavaScript Variables in a Single Line"
+date: "2021-07-12"
+categories: ["JavaScript"]
+---
+
+With ES6, we can use [array destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#array_destructuring) to swap variables in a single line.
+
+```js
+let x = 1;
+let y = 2;
+
+[x, y] = [y, x];
+
+console.log(x); // 2
+console.log(y); // 1
+```
