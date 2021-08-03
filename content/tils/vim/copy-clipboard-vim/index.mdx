@@ -1,0 +1,15 @@
+---
+title: "How to Copy to Clipboard in Vim"
+date: "2021-08-02"
+categories: ["Vim"]
+---
+
+First, select the text you want to copy using visual or visual line mode. Afterwards, type the following: 
+
+```sh
+"*y
+```
+
+- `"` to select a register
+- `*` is a register that references the system clipboard
+- `y` to yank your selection into the specified register
