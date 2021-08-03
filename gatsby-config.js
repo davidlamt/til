@@ -41,9 +41,15 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-preload-fonts`,
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingId: `G-P4LP6SGEEV`,
+        trackingIds: ['G-P4LP6SGEEV'],
+        gtagConfig: {
+          anonymize_ip: true,
+        },
+        pluginConfig: {
+          respectDNT: true,
+        },
       },
     },
     {
